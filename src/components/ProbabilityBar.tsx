@@ -28,21 +28,17 @@ export default function ProbabilityBar({
   barHeight = 2,
 }: ProbabilityBarProps) {
   const barColor = colorMap[color];
-
   return (
     <div className={cn('w-full', className)}>
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-sm text-fie-text-secondary">{label}</span>
-        {showPercent && (
-          <span className="text-sm font-mono font-semibold text-fie-text-primary font-tabular">
-            {value}%
-          </span>
-        )}
-      </div>
-      <div
-        className="w-full rounded-full bg-fie-bg-secondary"
-        style={{ height: `${barHeight * 4}px` }}
-      >
+      {label && (
+        <div className="flex items-center justify-between mb-1.5">
+          <span className="text-sm text-fie-text-secondary">{label}</span>
+          {showPercent && (
+            <span className="text-sm font-mono font-semibold text-fie-text-primary font-tabular">{value}%</span>
+          )}
+        </div>
+      )}
+      <div className="w-full rounded-full bg-fie-bg-secondary" style={{ height: `${barHeight * 4}px` }}>
         <motion.div
           className="rounded-full"
           style={{ backgroundColor: barColor, height: `${barHeight * 4}px` }}

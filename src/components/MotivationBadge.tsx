@@ -18,11 +18,7 @@ export default function MotivationBadge({ grade, className }: MotivationBadgePro
   return (
     <span
       className={cn('rounded-md px-2.5 py-0.5 text-xs font-semibold border', className)}
-      style={{
-        backgroundColor: style.bg,
-        color: style.color,
-        borderColor: style.border,
-      }}
+      style={{ backgroundColor: style.bg, color: style.color, borderColor: style.border }}
     >
       Class {grade}
     </span>

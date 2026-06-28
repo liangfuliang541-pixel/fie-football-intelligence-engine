@@ -26,20 +26,10 @@
     --input: 217 30% 18%;
     --ring: 162 100% 42%;
     --radius: 0.625rem;
-    --sidebar-background: 220 20% 4%;
-    --sidebar-foreground: 213 32% 91%;
-    --sidebar-primary: 162 100% 42%;
-    --sidebar-primary-foreground: 220 20% 4%;
-    --sidebar-accent: 217 19% 12%;
-    --sidebar-accent-foreground: 213 32% 91%;
-    --sidebar-border: 217 30% 18%;
-    --sidebar-ring: 162 100% 42%;
-
     --bg-primary: #0B0E14;
     --bg-secondary: #111827;
     --bg-card: #151A25;
     --bg-card-hover: #1A2030;
-    --bg-glass: rgba(21, 26, 37, 0.75);
     --accent-primary: #00D4A0;
     --accent-secondary: #3B82F6;
     --accent-danger: #FF3B5C;
@@ -71,12 +61,6 @@
   }
   .gradient-danger {
     background: linear-gradient(135deg, #FF3B5C, #FFB020);
-  }
-  .gradient-card {
-    background: linear-gradient(180deg, rgba(21,26,37,0.9) 0%, rgba(11,14,20,0.95) 100%);
-  }
-  .gradient-probability {
-    background: linear-gradient(90deg, #00D4A0 0%, #3B82F6 50%, #FF3B5C 100%);
   }
   .text-gradient-accent {
     background: linear-gradient(135deg, #00D4A0, #3B82F6);

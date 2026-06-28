@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard,
   Calendar,
@@ -23,7 +23,6 @@ const navItems = [
 export default function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-[100dvh] w-[220px] flex-col border-r border-fie-border-primary bg-fie-bg-primary">
-      {/* Logo */}
       <div className="flex h-16 items-center gap-3 border-b border-fie-border-primary px-5">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(0,212,160,0.1)]">
           <LayoutDashboard className="h-5 w-5 text-fie-accent-teal" />
@@ -31,7 +30,6 @@ export default function Sidebar() {
         <span className="text-xl font-bold tracking-tight text-fie-text-primary">FIE</span>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">
         <ul className="flex flex-col gap-1">
           {navItems.map((item) => {
@@ -59,7 +57,6 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      {/* User Profile */}
       <div className="border-t border-fie-border-primary px-4 py-3">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-fie-border-hover text-xs font-semibold text-fie-text-secondary">

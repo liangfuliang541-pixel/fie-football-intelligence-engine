@@ -18,25 +18,13 @@ export default function StatsComparisonBar({
   return (
     <div className={className}>
       <div className="flex items-center justify-between mb-1.5">
-        <span className="text-sm font-bold text-fie-accent-teal font-tabular">
-          {homeValue}
-        </span>
-        <span className="text-xs uppercase tracking-wider text-fie-text-muted">
-          {label}
-        </span>
-        <span className="text-sm font-bold text-fie-accent-blue font-tabular">
-          {awayValue}
-        </span>
+        <span className="text-sm font-bold text-fie-accent-teal font-tabular">{homeValue}</span>
+        <span className="text-xs uppercase tracking-wider text-fie-text-muted">{label}</span>
+        <span className="text-sm font-bold text-fie-accent-blue font-tabular">{awayValue}</span>
       </div>
       <div className="flex h-1.5 w-full gap-0.5">
-        <div
-          className="rounded-l-full bg-fie-accent-teal transition-all duration-800"
-          style={{ width: `${homePercent}%` }}
-        />
-        <div
-          className="rounded-r-full bg-fie-accent-blue transition-all duration-800"
-          style={{ width: `${awayPercent}%` }}
-        />
+        <div className="rounded-l-full bg-fie-accent-teal" style={{ width: `${homePercent}%` }} />
+        <div className="rounded-r-full bg-fie-accent-blue" style={{ width: `${awayPercent}%` }} />
       </div>
     </div>
   );
