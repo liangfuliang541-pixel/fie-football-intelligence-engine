@@ -56,7 +56,7 @@ export default function PreMatch() {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 py-4">
             <div className="text-center md:text-right">
-              <span className="text-5xl">🇬🇧</span>
+              <span className="text-5xl">\uD83C\uDDEC\uD83C\uDDE7</span>
               <h2 className="mt-2 text-xl md:text-3xl font-bold text-fie-text-primary">
                 Manchester City
               </h2>
@@ -71,7 +71,7 @@ export default function PreMatch() {
             </div>
 
             <div className="text-center md:text-left">
-              <span className="text-5xl">🇬🇧</span>
+              <span className="text-5xl">\uD83C\uDDEC\uD83C\uDDE7</span>
               <h2 className="mt-2 text-xl md:text-3xl font-bold text-fie-text-primary">
                 Liverpool
               </h2>
@@ -84,7 +84,7 @@ export default function PreMatch() {
               { label: 'Premier League — Round 31', color: 'text-fie-accent-blue bg-[rgba(59,130,246,0.1)]' },
               { label: 'Etihad Stadium', color: 'text-fie-text-secondary bg-[rgba(255,255,255,0.03)]' },
               { label: 'Ref: M. Oliver', color: 'text-fie-text-secondary bg-[rgba(255,255,255,0.03)]' },
-              { label: '☁️ 14°C', color: 'text-fie-text-secondary bg-[rgba(255,255,255,0.03)]' },
+              { label: '\u2601\uFE0F 14\u00B0C', color: 'text-fie-text-secondary bg-[rgba(255,255,255,0.03)]' },
             ].map((pill) => (
               <motion.span
                 key={pill.label}
@@ -106,7 +106,7 @@ export default function PreMatch() {
           <GlassCard>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-base font-semibold text-fie-text-primary">
-                <span className="text-xl mr-2">🇬🇧</span>
+                <span className="text-xl mr-2">\uD83C\uDDEC\uD83C\uDDE7</span>
                 Manchester City
               </h3>
               <span className="text-xs bg-[rgba(0,212,160,0.1)] text-fie-accent-teal rounded-full px-2 py-0.5">
@@ -130,7 +130,7 @@ export default function PreMatch() {
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-base font-semibold text-fie-text-primary">
                 Liverpool
-                <span className="text-xl ml-2">🇬🇧</span>
+                <span className="text-xl ml-2">\uD83C\uDDEC\uD83C\uDDE7</span>
               </h3>
               <span className="text-xs bg-[rgba(0,212,160,0.1)] text-fie-accent-teal rounded-full px-2 py-0.5">
                 2nd

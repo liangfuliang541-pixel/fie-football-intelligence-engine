@@ -159,7 +159,7 @@ export default function Live() {
             {/* Score */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 py-4">
               <div className="text-center md:text-right">
-                <span className="text-5xl md:text-6xl">🇬🇧</span>
+                <span className="text-5xl md:text-6xl">\uD83C\uDDEC\uD83C\uDDE7</span>
                 <h2 className="mt-2 text-2xl md:text-3xl font-bold text-fie-text-primary">
                   Man City
                 </h2>
@@ -180,7 +180,7 @@ export default function Live() {
               </div>
 
               <div className="text-center md:text-left">
-                <span className="text-5xl md:text-6xl">🇬🇧</span>
+                <span className="text-5xl md:text-6xl">\uD83C\uDDEC\uD83C\uDDE7</span>
                 <h2 className="mt-2 text-2xl md:text-3xl font-bold text-fie-text-primary">
                   Liverpool
                 </h2>

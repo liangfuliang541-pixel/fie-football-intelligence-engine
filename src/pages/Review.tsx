@@ -50,7 +50,7 @@ export default function Review() {
           <div className="flex flex-col items-center">
             <div className="flex items-center justify-center gap-6 md:gap-12 py-4">
               <div className="text-center md:text-right">
-                <span className="text-5xl">🇬🇧</span>
+                <span className="text-5xl">\uD83C\uDDEC\uD83C\uDDE7</span>
                 <h2 className="mt-2 text-2xl md:text-3xl font-bold text-fie-text-primary">
                   Man City
                 </h2>
@@ -70,7 +70,7 @@ export default function Review() {
                 </span>
               </div>
               <div className="text-center md:text-left">
-                <span className="text-5xl">🇬🇧</span>
+                <span className="text-5xl">\uD83C\uDDEC\uD83C\uDDE7</span>
                 <h2 className="mt-2 text-2xl md:text-3xl font-bold text-fie-text-primary">
                   Liverpool
                 </h2>

@@ -1,140 +1,155 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
-import { matches } from '@/data/mockData';
 import MatchCard from '@/components/MatchCard';
+import { matches } from '@/data/mockData';
 
-const leagueTabs = ['All', 'Premier League', 'La Liga', 'Bundesliga', 'Serie A', 'Ligue 1', 'World Cup'];
+const leagueFilters = [
+  'All',
+  'Premier League',
+  'La Liga',
+  'Bundesliga',
+  'Serie A',
+  'Ligue 1',
+  'World Cup',
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
+};
 
 export default function Matches() {
   const [search, setSearch] = useState('');
   const [activeLeague, setActiveLeague] = useState('All');
 
   const filtered = matches.filter((m) => {
-    const matchSearch =
-      search === '' ||
+    const matchesSearch =
+      !search ||
       m.homeTeam.toLowerCase().includes(search.toLowerCase()) ||
       m.awayTeam.toLowerCase().includes(search.toLowerCase()) ||
       m.league.toLowerCase().includes(search.toLowerCase());
-    const matchLeague = activeLeague === 'All' || m.league.includes(activeLeague);
-    return matchSearch && matchLeague;
+    const matchesLeague =
+      activeLeague === 'All' || m.league.includes(activeLeague) || (activeLeague === 'World Cup' && m.league.includes('World'));
+    return matchesSearch && matchesLeague;
   });
 
-  const liveMatches = filtered.filter((m) => m.status === 'live');
-  const upcomingMatches = filtered.filter((m) => m.status === 'upcoming');
-  const finishedMatches = filtered.filter((m) => m.status === 'finished');
+  const live = filtered.filter((m) => m.status === 'live');
+  const upcoming = filtered.filter((m) => m.status === 'upcoming');
+  const finished = filtered.filter((m) => m.status === 'finished');
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
       className="space-y-6"
     >
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-2xl font-bold text-fie-text-primary">赛事中心</h1>
-        <div className="relative w-full sm:w-72">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fie-text-muted" />
-          <input
-            type="text"
-            placeholder="搜索球队或联赛..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-fie-border-primary bg-fie-bg-secondary py-2.5 pl-10 pr-4 text-sm text-fie-text-primary placeholder-fie-text-muted outline-none transition-colors focus:border-fie-accent-teal"
-          />
-        </div>
-      </div>
+      <motion.div variants={itemVariants}>
+        <h1 className="text-2xl md:text-3xl font-bold text-fie-text-primary">
+          Match Center
+        </h1>
+        <p className="text-sm text-fie-text-muted mt-1">
+          Browse all matches and predictions
+        </p>
+      </motion.div>
 
-      {/* League Tabs */}
-      <div className="flex flex-wrap gap-2">
-        {leagueTabs.map((league) => (
+      {/* Search */}
+      <motion.div variants={itemVariants} className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-fie-text-muted" />
+        <input
+          type="text"
+          placeholder="Search teams, leagues..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full rounded-xl border border-fie-border-primary bg-fie-bg-secondary py-2.5 pl-10 pr-4 text-sm text-fie-text-primary placeholder:text-fie-text-muted focus:border-fie-border-hover focus:outline-none transition-colors"
+        />
+      </motion.div>
+
+      {/* League Filters */}
+      <motion.div variants={itemVariants} className="flex gap-2 overflow-x-auto pb-1">
+        {leagueFilters.map((league) => (
           <button
             key={league}
             onClick={() => setActiveLeague(league)}
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
+            className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
               activeLeague === league
                 ? 'bg-fie-accent-teal text-fie-bg-primary'
-                : 'border border-fie-border-primary bg-transparent text-fie-text-secondary hover:border-fie-border-hover hover:text-fie-text-primary'
+                : 'bg-fie-bg-secondary text-fie-text-secondary border border-fie-border-primary hover:border-fie-border-hover'
             }`}
           >
             {league}
           </button>
         ))}
-      </div>
+      </motion.div>
 
-      {/* Match Lists */}
+      {/* LIVE */}
       <AnimatePresence mode="wait">
-        <motion.div
-          key={activeLeague + search}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="space-y-6"
-        >
-          {liveMatches.length > 0 && (
-            <div>
-              <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-fie-accent-danger">
-                <span className="h-2 w-2 rounded-full bg-fie-accent-danger animate-pulse" />
-                进行中 ({liveMatches.length})
+        {live.length > 0 && (
+          <motion.section
+            key="live"
+            variants={itemVariants}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="h-2 w-2 rounded-full bg-fie-accent-danger animate-pulse" />
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-fie-accent-danger">
+                Live
               </h2>
-              <div className="space-y-2">
-                {liveMatches.map((match, i) => (
-                  <motion.div
-                    key={match.id}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                  >
-                    <MatchCard match={match} />
-                  </motion.div>
-                ))}
-              </div>
+              <span className="text-xs text-fie-text-muted">({live.length})</span>
             </div>
-          )}
-
-          {upcomingMatches.length > 0 && (
-            <div>
-              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-fie-text-muted">
-                即将开始 ({upcomingMatches.length})
-              </h2>
-              <div className="space-y-2">
-                {upcomingMatches.map((match, i) => (
-                  <motion.div
-                    key={match.id}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                  >
-                    <MatchCard match={match} />
-                  </motion.div>
-                ))}
-              </div>
+            <div className="space-y-2">
+              {live.map((match) => (
+                <MatchCard key={match.id} match={match} />
+              ))}
             </div>
-          )}
-
-          {finishedMatches.length > 0 && (
-            <div>
-              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-fie-text-dim">
-                已结束 ({finishedMatches.length})
-              </h2>
-              <div className="space-y-2 opacity-70">
-                {finishedMatches.map((match, i) => (
-                  <motion.div
-                    key={match.id}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                  >
-                    <MatchCard match={match} />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          )}
-        </motion.div>
+          </motion.section>
+        )}
       </AnimatePresence>
+
+      {/* Upcoming */}
+      <motion.section variants={itemVariants}>
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-fie-text-secondary mb-3">
+          Upcoming <span className="text-fie-text-muted">({upcoming.length})</span>
+        </h2>
+        <div className="space-y-2">
+          <AnimatePresence>
+            {upcoming.map((match, i) => (
+              <motion.div
+                key={match.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ delay: i * 0.04, duration: 0.3 }}
+              >
+                <MatchCard match={match} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </motion.section>
+
+      {/* Finished */}
+      {finished.length > 0 && (
+        <motion.section variants={itemVariants}>
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-fie-text-secondary mb-3">
+            Finished <span className="text-fie-text-muted">({finished.length})</span>
+          </h2>
+          <div className="space-y-2">
+            {finished.map((match) => (
+              <MatchCard key={match.id} match={match} />
+            ))}
+          </div>
+        </motion.section>
+      )}
     </motion.div>
   );
 }
