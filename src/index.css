@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 213 32% 91%;
+    --card: 220 18% 12%;
+    --card-foreground: 213 32% 91%;
+    --popover: 220 18% 12%;
+    --popover-foreground: 213 32% 91%;
+    --primary: 162 100% 42%;
+    --primary-foreground: 220 20% 4%;
+    --secondary: 217 19% 12%;
+    --secondary-foreground: 213 32% 91%;
+    --muted: 217 19% 12%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 162 100% 42%;
+    --accent-foreground: 220 20% 4%;
+    --destructive: 349 100% 62%;
+    --destructive-foreground: 213 32% 91%;
+    --border: 217 30% 18%;
+    --input: 217 30% 18%;
+    --ring: 162 100% 42%;
+    --radius: 0.625rem;
+    --sidebar-background: 220 20% 4%;
+    --sidebar-foreground: 213 32% 91%;
+    --sidebar-primary: 162 100% 42%;
+    --sidebar-primary-foreground: 220 20% 4%;
+    --sidebar-accent: 217 19% 12%;
+    --sidebar-accent-foreground: 213 32% 91%;
+    --sidebar-border: 217 30% 18%;
+    --sidebar-ring: 162 100% 42%;
+
+    --bg-primary: #0B0E14;
+    --bg-secondary: #111827;
+    --bg-card: #151A25;
+    --bg-card-hover: #1A2030;
+    --bg-glass: rgba(21, 26, 37, 0.75);
+    --accent-primary: #00D4A0;
+    --accent-secondary: #3B82F6;
+    --accent-danger: #FF3B5C;
+    --accent-warning: #FFB020;
+    --accent-success: #00E676;
+    --accent-purple: #8B5CF6;
+    --text-primary: #E2E8F0;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --text-dim: #475569;
+    --border-primary: #1E2940;
+    --border-hover: #2D3E5C;
+    --border-accent: #00D4A0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-fie-bg-primary text-fie-text-primary font-sans antialiased;
+    font-feature-settings: "tnum" on, "lnum" on;
+  }
+}
+
+@layer utilities {
+  .gradient-accent {
+    background: linear-gradient(135deg, #00D4A0, #3B82F6);
+  }
+  .gradient-danger {
+    background: linear-gradient(135deg, #FF3B5C, #FFB020);
+  }
+  .gradient-card {
+    background: linear-gradient(180deg, rgba(21,26,37,0.9) 0%, rgba(11,14,20,0.95) 100%);
+  }
+  .gradient-probability {
+    background: linear-gradient(90deg, #00D4A0 0%, #3B82F6 50%, #FF3B5C 100%);
+  }
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #00D4A0, #3B82F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glass-card {
+    background: rgba(21, 26, 37, 0.75);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+  .font-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
